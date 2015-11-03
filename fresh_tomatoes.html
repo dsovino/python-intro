@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DSs Favorites Movies EVER!</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }        
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        /* BEGIN CUSTOM CSS */
+          .movie_info {
+          margin-top: 25px;
+        }
+        .movie-tile {
+          min-height: 550px;
+          padding: 30px;
+        }
+        .navbar-header {
+          width: 100%;
+          text-align: center;
+        }
+
+        .navbar.navbar-inverse.navbar-fixed-top {
+          background-color: #0014FF !important;
+          border-color: #FFFFFF;
+          background-image: linear-gradient(to top,#FFFFFF 0,#020094 100%);
+          height: 80px;
+        }
+
+        a.navbar-brand {
+          color: #FFFFFF !important;
+          font-size: 30px;
+          text-shadow: 0 4px 5px rgba(0,0,0,.25) !important;
+          margin: auto;
+          width: 100%;
+        }
+
+        .container {
+          padding-top: 15px;
+        }
+
+        .row {
+          margin-bottom: 10px;
+        }
+
+        .left {
+          width: 55px;
+          position: relative;
+          float: left;
+        }
+
+        .right {
+          text-align: justify;
+          position: relative;
+          float: right;
+          width: 80%;
+        }
+
+        i.fa {
+          font-size: 25px;
+          position: relative;
+          color: red;
+        }
+
+        .fixed-bottom {
+          background-color: #0014FF !important;
+          border-color: #FFFFFF;
+          background-image: linear-gradient(to bottom,#FFFFFF 3%,#020094 100%);
+          height: 80px;
+          position: fixed;
+          bottom: 0px;
+          right: 0;
+          left: 0;
+        }
+        a.twit_link {
+          top: 10px;
+          font-size: 20px;
+          color: white;
+          /* margin-top: 10px; */
+          position: relative;
+          text-shadow: 0 4px 5px rgba(0,0,0,.25) !important;
+        }
+
+        i.fa.fa-twitter {
+          color: white;
+        }
+
+        /* END CUSTOM CSS */
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">My Favorites Movies Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="4hh4Mc7mtJE" data-toggle="modal" data-target="#trailer">
+    <img src="http://imgau3.surfstitch.com/product_images/SF821-VAS-1600.JPG" width="220" height="342">
+    <h2>Endless Summer 2</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>1994</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>Bruce Brown</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>1h 49m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>Documentarian Bruce Brown again explores choice international surf destinations, this time visiting locations such as Alaska, Indonesia, Fiji, France and South Africa.</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="eYDvxo-M0OQ" data-toggle="modal" data-target="#trailer">
+    <img src="http://www.interestingblends.com/wp-content/uploads/2013/04/collabdp.png" width="220" height="342">
+    <h2>The Collaborators</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>2013</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>Ed Lachman</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>1h 04m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>Documentary with invited musicians on Daft Punk's 'Random Access Memories' album</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="6ddpV1GvF7E" data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTMxNTk3NDY1NV5BMl5BanBnXkFtZTcwNDk0ODg3MQ@@._V1_SX640_SY720_.jpg" width="220" height="342">
+    <h2>Man on Wire</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>2008</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>James Marsh</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>1h 34m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>A look at tightrope walker Philippe Petit's daring, but illegal, high-wire routine performed between New York City's World Trade Center's twin towers in 1974, what some consider, 'the artistic crime of the century.'</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="2oHOv9p9dHQ" data-toggle="modal" data-target="#trailer">
+    <img src="http://die2live.worthyofpraise.org/wp-content/uploads/2015/02/matrix-movie.jpg" width="220" height="342">
+    <h2>The Matrix</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>1999</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>Andy Wachowski, Lana Wachowski</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>2h 16m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>Neo (Keanu Reeves) believes that Morpheus (Laurence Fishburne), an elusive figure considered to be the most dangerous man alive, can answer his question -- What is the Matrix? Neo is contacted by Trinity (Carrie-Anne Moss), a beautiful stranger who leads him into an underworld where he meets Morpheus...</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="GxvEyJuDjvI" data-toggle="modal" data-target="#trailer">
+    <img src="http://ecx.images-amazon.com/images/I/515WxApm5jL._SY445_.jpg" width="220" height="342">
+    <h2>Riding Giants</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>2004</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>Stacy Peralta</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>1h 45m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>During the winter of 1975 in Hawaii, surfing was shaken to its core. A group of young surfers from Australia and South Africa sacrificed everything and put it all on the line to create a sport, a culture, and an industry that today is worth billions of dollars and has captured the imagination of the world.</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="TuLX50_5UAI" data-toggle="modal" data-target="#trailer">
+    <img src="http://t1.gstatic.com/images?q=tbn:ANd9GcR8rbq35XeWZXz_KJV5B_nR3KippiLluW2OnFK4TcoZ8Ukn6jBP" width="220" height="342">
+    <h2>My Neighbor Totoro</h2>
+    <div class="movie_info">
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-calendar-check-o"></i>
+        </div>
+        <div class="right">
+          <span>1988</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-film"></i>
+        </div>
+        <div class="right">
+          <span>Hayao Miyazaki</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="right">
+          <span>1h 28m</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="left">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="right">
+          <span>Two sisters encounter a mythical forest sprite and its woodland companions when they move to rural Japan.</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="fixed-bottom">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="twit_link" href="https://twitter.com/dsovino" target="_blank"><i class="fa fa-twitter"></i>dsovino</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
