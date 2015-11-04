@@ -1,7 +1,7 @@
 import webbrowser
 
 
-class Movie():
+class Movie(object):
     """ This class is for html movie render in a web browser"""
     VALID_RATINGS = ["G", "PG", "PG-13", "R"]
 

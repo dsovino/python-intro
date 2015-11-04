@@ -67,7 +67,7 @@ neighbor_totoro = movie.Movie("My Neighbor Totoro",
                               "W2OnFK4TcoZ8Ukn6jBP",
                               "https://www.youtube.com/watch?v=TuLX50_5UAI")
 
-# Moview list
+# Movie list
 movies = [endless_summer, the_collaborators, man_on_wire,
           the_matrix, riding_giants, neighbor_totoro]
 
